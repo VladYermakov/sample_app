@@ -30,29 +30,39 @@ describe User do
   						password: "aaaaa", password_confirmation: "aaaaa")
   end
 
-  subject {@user_ok}
+  subject { @user_ok }
 
-  it {should respond_to(:name)}
-  it {should respond_to(:email)}
-  it {should respond_to(:password_digest)}
-  it {should respond_to(:password)}
-  it {should respond_to(:password_confirmation)}
-  it {should be_valid}
-  it {should respond_to(:authenticate)}
+  it { should respond_to(:name) }
+  it { should respond_to(:email) }
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:authenticate) }
+  it { should respond_to(:remember_token) }
+  it { should be_valid}
+
+  describe "remember token" do
+
+  	before { @user_ok.save }
+
+  	#its(:remember_token) { should_not be_blank }
+  	it { expect(@user_ok.remember_token).not_to be_blank }
+
+  end
 
   describe "when name is too short" do
     
-    subject {@user_with_short_name}
+    subject { @user_with_short_name }
 
-    it {should_not be_valid}
+    it { should_not be_valid }
 
   end
 
   describe "when name is too long" do
 
-    subject {@user_with_long_name}
+    subject { @user_with_long_name }
 
-    it {should_not be_valid}
+    it { should_not be_valid }
 
   end
 
@@ -163,5 +173,6 @@ describe User do
   	it {should be_invalid}
 
   end
+
 
 end
