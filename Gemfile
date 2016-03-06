@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'capybara'
 
 group :development, :test do
   gem 'sqlite3'
@@ -17,7 +18,6 @@ end
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'
-  gem 'capybara', '>=2.2.0'
 end
 
 group :development do
