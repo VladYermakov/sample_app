@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  has_many :microposts, dependent: :destroy
+
   def User.new_remember_token
 
   	SecureRandom.urlsafe_base64
@@ -23,12 +25,18 @@ class User < ActiveRecord::Base
 
   end
 
-  private
+  def feed
 
-  def create_remember_token
-
-  	self.remember_token = User.encrypt(User.new_remember_token)
+    Micropost.where("user_id = ?", id)
 
   end
+
+  private
+
+    def create_remember_token
+
+  	  self.remember_token = User.encrypt(User.new_remember_token)
+
+    end
 
 end

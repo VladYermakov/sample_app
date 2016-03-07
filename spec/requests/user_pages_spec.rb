@@ -182,4 +182,25 @@ describe "User pages" do
 
   end
 
+   describe "profile page" do
+
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:micropost_1) { user.microposts.create!(content: "Micropost 1")}
+    let!(:micropost_2) { user.microposts.create!(content: "Micropost 2")}
+
+    before { visit user_path(user) }
+
+    it { should have_content(user.name) }
+    it { should have_title(user.name) }
+
+    describe "microposts" do
+
+      it { should have_content(micropost_1.content) }
+      it { should have_content(micropost_2.content) }
+      it { should have_content(user.microposts.count) }
+
+    end
+
+   end
+
 end

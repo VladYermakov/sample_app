@@ -65,6 +65,7 @@ end
 #require "capybara/rails"
 require "capybara"
 require "capybara/dsl"
+require "rspec/its"
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
