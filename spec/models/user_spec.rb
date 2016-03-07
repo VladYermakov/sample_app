@@ -12,9 +12,9 @@ describe User do
   						password: 'foobar', password_confirmation: 'foobar')
   	@user_with_invalid_email = User.new(name: "Vlad", email: "2@qwe..fs",
   						password: 'foobar', password_confirmation: 'foobar')
-  	@user_with_long_name = User.new(name: "aaaaaaaaaaaaaaaaaaaaa", email: "email@e.mail",
+  	@user_with_long_name = User.new(name: "a"*51, email: "email@e.mail",
   						password: 'foobar', password_confirmation: 'foobar')
-  	@user_with_short_name = User.new(name: "aa", email: "a@a.a",
+  	@user_with_short_name = User.new(name: "a", email: "a@a.a",
   						password: 'foobar', password_confirmation: 'foobar')
   	@user_with_valid_email = User.new(name: "Vlad", email: "vladikthebest97@gmail.com",
   						password: 'foobar', password_confirmation: 'foobar')
@@ -39,7 +39,18 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
-  it { should be_valid}
+  it { should respond_to(:admin) }
+  it { should be_valid }
+  it { should_not be_admin }
+
+  describe "with admin attribute set to 'true'" do
+    before do
+      @user_ok.save!
+      @user_ok.toggle!(:admin)
+    end
+
+    it { should be_admin }
+  end
 
   describe "remember token" do
 

@@ -1,7 +1,6 @@
 require 'spec_helper'
 require "rails_helper"
 
-
 describe "Static pages" do
 
   let(:base_title) {"My first Rails app"}
