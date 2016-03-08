@@ -157,7 +157,6 @@ describe "User pages" do
     
       before { click_button "Save changes" }
 
-    
       it { should have_content('error') }
     
     end
@@ -182,7 +181,7 @@ describe "User pages" do
 
   end
 
-   describe "profile page" do
+  describe "profile page" do
 
     let(:user) { FactoryGirl.create(:user) }
     let!(:micropost_1) { user.microposts.create!(content: "Micropost 1")}
